@@ -1,0 +1,39 @@
+
+.radio_img{
+	padding-left: 50px;
+	padding-right: 25px;
+}
+
+#drop{
+  height: 34px;
+  width: 34px;
+  margin: 0 auto;
+}
+
+/************************************************************************
+For the colorPicker plugin:
+************************************************************************/
+.ColorBlotch { 
+	border: 1px solid #000000;
+	padding: 0 2px 0 2px;
+	font-family: monospace;
+	cursor: pointer;
+	font-size: 1.2em;
+}
+
+.FocusColor {
+	font-size: 2em;
+}
+
+#ColorPicker{
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+.code { 
+  background-color: #fff;
+  color: #000;
+  font-family: monospace;
+  overflow: auto;
+  border: 1px dashed #000;
+ }
