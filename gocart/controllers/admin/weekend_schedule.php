@@ -54,7 +54,8 @@ class Weekend_Schedule extends Admin_Controller
 		//default values are empty if the weekend_schedule is new
 		$data['id']			= '';
 		$data['teamID']		= '';
-		$data['staffID']	= '';		
+		$data['staffID']	= '';	
+		$data['staff_list'] = array();
 		
 		// passing teamID to get whole staff list
 		if ($id)
