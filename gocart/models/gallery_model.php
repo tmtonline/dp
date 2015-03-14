@@ -8,6 +8,7 @@ Class Gallery_Model extends CI_Model
 	function __construct()
 	{
 			parent::__construct();
+			
 	}	
 	
 	function get_list()
@@ -46,6 +47,12 @@ Class Gallery_Model extends CI_Model
 	{
 		$res = $this->db->where('status', 'Enable')->order_by('sequence',"ASC")->get('gallery');				
 		return $res->result_array();
+	}	
+	
+	function get_all()
+	{
+		$this->db->from('gallery');		
+		return $this->db->get();
 	}
 	
 	
