@@ -143,8 +143,6 @@ $(document).ready(function(){
                         </ul>
                     </li-->
 
-
-
                     <?php
                     // Restrict access to Admins only
                     if($this->auth->check_access('Admin')) : ?>
@@ -176,6 +174,8 @@ $(document).ready(function(){
                             <li><a href="<?php echo $admin_url;?>settings/canned_messages"><?php echo lang('common_canned_messages') ?></a></li>
                             <li><a href="<?php echo $admin_url;?>locations"><?php echo lang('common_locations') ?></a></li-->
                             <li><a href="<?php echo $admin_url;?>admin"><?php echo lang('common_administrators') ?></a></li>
+                            <li><a href="<?php echo $admin_url;?>team"><?php echo lang('common_teams_setting') ?></a></li>
+                            <li><a href="<?php echo $admin_url;?>weekend_schedule"><?php echo lang('common_weekend_schedule_setting') ?></a></li>
                             <!--li><a href="<?php echo $admin_url;?>messages"><?php echo lang('common_messages') ?></a></li-->   
                             <!--li><a href="<?php echo $admin_url;?>profile"><?php echo lang('common_profile') ?></a></li-->
                         </ul>

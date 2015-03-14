@@ -51,6 +51,8 @@ $lang['common_gallery'] = 'Gallery';
 $lang['common_leave'] = 'Leave Application Listing';
 $lang['common_leave_app'] = 'Leave Application';
 $lang['common_apply_leave'] = 'Apply Leave';
+$lang['common_teams_setting'] = 'Teams Setting';
+$lang['common_weekend_schedule_setting'] = 'Weekend Schedule Setting';
 
 $lang['leave_adjustment'] = 'Leave Adjustment';
 

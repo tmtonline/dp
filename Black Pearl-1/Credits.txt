@@ -1,0 +1,17 @@
+Credits:
+--------
+http://getbootstrap.com
+http://jquery.com
+http://www.highcharts.com/
+http://silviomoreto.github.io/bootstrap-select/
+http://omnipotent.net/jquery.sparkline/
+http://icomoon.io/
+https://github.com/harvesthq/chosen
+http://arshaw.com/fullcalendar/
+http://areaaperta.com/nicescroll/
+http://datatables.net/
+https://github.com/jackmoore/autosize
+https://github.com/posabsolute/jQuery-Validation-Engine
+http://elfinder.org/
+http://freepik.com
+

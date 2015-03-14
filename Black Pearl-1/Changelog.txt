@@ -1,0 +1,12 @@
+Changelog:
+----------
+
+Version 1.0
+-----------
+Initial Release
+
+Version 1.0.2
+-----------
+- Added Message and Notification dropdown
+- Added new sidebar widgets in the dashboard
+- Changes made on main graph by adding sub graphs

@@ -317,7 +317,8 @@
 								     					
 							<label for="content"><?php echo lang('reason');?></label>
 							<?php
-							$data	= array('name'=>'reason', 'class'=>'redactor', 'value'=>set_value('reason', html_entity_decode($reason)));
+							$data	= array('name'=>'reason', 'id'=>'reason', 'class'=>'redactor', 'value'=>set_value('reason', html_entity_decode($reason)) , 'onchange' => 'enableBeforeUnload();', 'onkeyup' => 'enableBeforeUnload();');
+
 							echo form_textarea($data);
 							?>
 									
@@ -365,5 +366,22 @@ $("#cancel").click(function(){
 		}
 });
 
+function enableBeforeUnload() {
+    window.onbeforeunload = function (e) {
+        return "Discard changes?";
+    };
+}
+function disableBeforeUnload() {
+    window.onbeforeunload = null;
+}
 
+
+$('#reason').data('serialize',$('#reason').serialize());
+  // On load save form current state
+
+$(window).bind('beforeunload', function(e){
+    if($('#reason').serialize()!=$('#reason').data('serialize'))return "You haven't submit your reason yet. Do you want to leave without submit?";
+    else e=null;
+    // i.e; if form state change show box not.
+});
 </script>

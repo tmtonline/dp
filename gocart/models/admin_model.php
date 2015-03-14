@@ -7,5 +7,13 @@ Class Admin_model extends CI_Model
 		$result = $this->db->get('admin');
 		$result = $result->row();				
 		return $result;		
-	}		
+	}	
+	
+	function get_staffs()
+	{
+		$this->db->where('access', 'staff');
+		$result = $this->db->get('admin');
+		return $result->result();		
+	}
+	
 }
