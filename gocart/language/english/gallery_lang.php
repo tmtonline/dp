@@ -35,6 +35,8 @@ $lang['image']					= 'Image';
 $lang['status']					= 'Status';
 $lang['enable']					= 'Enable';
 $lang['disable']				= 'Disable';
+$lang['gallery']				= 'Gallery';
+
 
 
 $lang['no_gallery_or_links']		= 'There are currently no latest gallery or links.';

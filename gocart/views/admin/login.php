@@ -1,40 +1,97 @@
-<?php include('header.php'); ?>
+<!DOCTYPE html>
+<html>
 
-<style type="text/css">
-    body {
-        margin-top:50px;
-    }
-</style>
+<head>
 
-<div class="row">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>INSPINIA | Login</title>
     
-    <div class="span4 offset4">
-        <div style="text-align:center; margin-bottom:15px;">
-            <img src="<?php echo base_url('assets/img/tmt.png');?>"/>
+      <link href="<?php echo base_url ('assets/css/bootstrap.min.css')?>" rel="stylesheet" />
+    <link href="<?php echo base_url ('assets/font-awesome/css/font-awesome.css')?>" rel="stylesheet"/>
+
+	 <link href="<?php echo base_url ('assets/css/animate.css')?>" rel="stylesheet"/>
+    <link href="<?php echo base_url ('assets/css/style.css')?>" rel="stylesheet"/>
+    
+   
+</head>
+
+<body class="gray-bg">
+
+   <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+                <!--h1 class="logo-name">logo</h1-->
+				
+				    <?php
+				    //lets have the flashdata overright "$message" if it exists
+				    if($this->session->flashdata('message'))
+				    {
+				        $message    = $this->session->flashdata('message');
+				    }
+				    
+				    if($this->session->flashdata('error'))
+				    {
+				        $error  = $this->session->flashdata('error');
+				    }
+				    
+				    if(function_exists('validation_errors') && validation_errors() != '')
+				    {
+				        $error  = validation_errors();
+				    }
+				    ?>
+				    
+				    <div id="js_error_container" class="alert alert-error" style="display:none;"> 
+				        <p id="js_error"></p>
+				    </div>
+				    
+				    <div id="js_note_container" class="alert alert-note" style="display:none;">
+				        
+				    </div>
+				    
+				    <?php if (!empty($message)): ?>
+				        <div class="alert alert-success alert-dismissable">
+				           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">X</button>
+				            <?php echo $message; ?>
+				        </div>
+				    <?php endif; ?>
+				
+				    <?php if (!empty($error)): ?>
+				        <div class="alert alert-danger alert-dismissable">
+				           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">X</button>
+				            <?php echo $error; ?>
+				        </div>
+				    <?php endif; ?>
+				
+            <img src="<?php echo base_url('assets/img/tmt.png');?>" >
+            
+            </div>
+            <h3>Welcome to Tmt.my</h3>
+            <p>Login in</p>
+            <?php echo form_open($this->config->item('admin_folder').'/login') ?>
+                <div class="form-group">
+                    <label for="username"><?php echo lang('username');?></label>
+                    <?php echo form_input(array('name'=>'username', 'class'=>'form-control', 'placeholder="Username"')); ?>                                        
+                </div>
+                <div class="form-group">
+                	<label for="password"><?php echo lang('password');?></label>
+                    <?php echo form_password(array('name'=>'password', 'class'=>'form-control', 'placeholder="Password"')); ?>                                        
+                </div>
+                
+                <input class="btn btn-primary block full-width m-b" type="submit" value="<?php echo lang('login');?>"/>
+
+                 <input type="hidden" value="<?php echo $redirect; ?>" name="redirect"/>
+        		 <input type="hidden" value="submitted" name="submitted"/>
+                
+                <!--a href="#"><small>Forgot password?</small></a>
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a-->
+            <?php echo  form_close(); ?>
+            <p class="m-t"> <small>Tmt.my &copy; 2015</small> </p>
         </div>
-    
-    <?php echo form_open($this->config->item('admin_folder').'/login') ?>
-    <fieldset>
-        <label for="username"><?php echo lang('username');?></label>
-        <?php echo form_input(array('name'=>'username', 'class'=>'span4')); ?>
-        
-        <label for="password"><?php echo lang('password');?></label>
-        <?php echo form_password(array('name'=>'password', 'class'=>'span4')); ?>
-        
-        <label class="checkbox">
-            <?php echo form_checkbox(array('name'=>'remember', 'value'=>'true'))?>
-            <?php echo lang('stay_logged_in');?>
-        </label>
-        
-            <input class="btn btn-primary" type="submit" value="<?php echo lang('login');?>"/>
-        
-        
-        <input type="hidden" value="<?php echo $redirect; ?>" name="redirect"/>
-        <input type="hidden" value="submitted" name="submitted"/>
-        
-    </fieldset>
-    <?php echo  form_close(); ?>
-    </div>
 </div>
+    
+    
 
-<?php include('footer.php'); ?>

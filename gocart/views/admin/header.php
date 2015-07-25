@@ -1,229 +1,252 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>ThunderMatch<?php echo (isset($page_title))?' :: '.$page_title:''; ?></title>
 
-<link type="text/css" href="<?php echo base_url('assets/css/styles.css');?>" rel="stylesheet" />
-<link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url('assets/css/bootstrap-responsive.min.css');?>" rel="stylesheet" type="text/css" />
-<link type="text/css" href="<?php echo base_url('assets/css/jquery-ui.css');?>" rel="stylesheet" />
-<link type="text/css" href="<?php echo base_url('assets/css/redactor.css');?>" rel="stylesheet" />
-<link type="text/css" href="<?php echo base_url('assets/css/jquery.timepicker.css');?>" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link type="text/css" href="<?php echo base_url('assets/css/fullcalendar.print.css');?>" rel="stylesheet" media="print" />
-<link type="text/css" href="<?php echo base_url('assets/css/fullcalendar.css');?>" rel="stylesheet" />
+    <title>Tmt.my</title>
 
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery-ui.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/redactor.min.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.timepicker.js');?>"></script>
-<script type="text/javascript" src="<?php echo base_url('assets/js/jquery.form.min.js');?>"></script>
+    <link type="text/css" href="<?php echo base_url('assets/css/redactor.css');?>" rel="stylesheet" />
+    <link href="<?php echo base_url ('assets/css/bootstrap.min.css')?>" rel="stylesheet"/>
+    <link href="<?php echo base_url ('assets/font-awesome/css/font-awesome.css')?>" rel="stylesheet"/>
+   	<link href="<?php echo base_url ('assets/css/plugins/iCheck/custom.css')?>" rel="stylesheet"/>
+	<link href="<?php echo base_url ('assets/css/animate.css')?>" rel="stylesheet"/>
+	<link href="<?php echo base_url ('assets/css/style.css')?>" rel="stylesheet"/>
+	<link type="text/css" href="<?php echo base_url('assets/css/redactor.css');?>" rel="stylesheet" />
+	<link type="text/css" href="<?php echo base_url('assets/css/jquery.timepicker.css');?>" rel="stylesheet" />
+	<link type="text/css" href="<?php echo base_url('assets/css/fullcalendar.print.css');?>" rel="stylesheet" media="print" />
+	<link type="text/css" href="<?php echo base_url('assets/css/fullcalendar.css');?>" rel="stylesheet" />
 
 
-
-<?php if($this->auth->is_logged_in(false, false)):?>
-    
-<style type="text/css">
-    body {
-        margin-top:50px;
-    }
-    
-    @media (max-width: 979px){ 
-        body {
-            margin-top:0px;
-        }
-    }
-    @media (min-width: 980px) {
-        .nav-collapse.collapse {
-            height: auto !important;
-            overflow: visible !important;
-        }
-     }
-    
-    .nav-tabs li a {
-        text-transform:uppercase;
-        background-color:#f2f2f2;
-        border-bottom:1px solid #ddd;
-        text-shadow: 0px 1px 0px #fff;
-        filter: dropshadow(color=#fff, offx=0, offy=1);
-        font-size:12px;
-        padding:5px 8px;
-    }
-    
-    .nav-tabs li a:hover {
-        border:1px solid #ddd;
-        text-shadow: 0px 1px 0px #fff;
-        filter: dropshadow(color=#fff, offx=0, offy=1);
-    }
-    	
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-	
-	#script-warning {
-		display: none;
-		background: #eee;
-		border-bottom: 1px solid #ddd;
-		padding: 0 10px;
-		line-height: 40px;
-		text-align: center;
-		font-weight: bold;
-		font-size: 12px;
-		color: red;
-	}
-	
-	
-	#loading {
-		display: none;
-		position: absolute;
-		top: 10px;
-		right: 10px;
-	}
-
-    
-</style>
-<script type="text/javascript">
-$(document).ready(function(){
-    $('.datepicker').datepicker({dateFormat: 'yy-mm-dd'});
-    
-    $('.redactor').redactor({
-            minHeight: 200,
-            imageUpload: '<?php echo site_url(config_item('admin_folder').'/wysiwyg/upload_image');?>',
-            fileUpload: '<?php echo site_url(config_item('admin_folder').'/wysiwyg/upload_file');?>',
-            imageGetJson: '<?php echo site_url(config_item('admin_folder').'/wysiwyg/get_images');?>',
-            convertDivs: false,
-            paragraphize: false,          
-            imageUploadErrorCallback: function(json)
-            {
-                alert(json.error);
-            },
-            fileUploadErrorCallback: function(json)
-            {
-                alert(json.error);
-            }
-      });
-    
-    
-});
-</script>
-<?php endif;?>
 </head>
+<?php $admin_url = site_url($this->config->item('admin_folder')).'/';?>
 <body>
-<?php if($this->auth->is_logged_in(false, false)):?>
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            
-            <?php $admin_url = site_url($this->config->item('admin_folder')).'/';?>
-            
-            <a class="brand" href="<?php echo $admin_url;?>"></a>
-            
-            <div class="nav-collapse">
-                <ul class="nav">
-                    <li><a href="<?php echo $admin_url;?>"><?php echo lang('common_home');?></a></li>
-                    <!--li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_sales') ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo $admin_url;?>orders"><?php echo lang('common_orders') ?></a></li>
-                            <?php if($this->auth->check_access('Admin')) : ?>
-                            <li><a href="<?php echo $admin_url;?>customers"><?php echo lang('common_customers') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>customers/groups"><?php echo lang('common_groups') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>reports"><?php echo lang('common_reports') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>coupons"><?php echo lang('common_coupons') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>giftcards"><?php echo lang('common_giftcards') ?></a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </li-->
 
-                    <?php
-                    // Restrict access to Admins only
-                    if($this->auth->check_access('Admin')) : ?>
-                    <!--li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_catalog') ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo $admin_url;?>categories"><?php echo lang('common_categories') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>products"><?php echo lang('common_products') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>digital_products"><?php echo lang('common_digital_products') ?></a></li>
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <!--div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/profile_small.jpg') ?>" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
+                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="mailbox.html">Mailbox</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">Logout</a></li>
                         </ul>
+                    </div-->
+                    <div class="logo-element">
+                        TMT
+                    </div>
+                </li>
+                
+                
+                
+                <li>
+                    <a href="<?php echo $admin_url;?>"><i class="fa fa-diamond"></i> <span class="nav-label"><?php echo lang('common_home');?></span></a>
+                </li>   
+                <li>
+                
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_leave_app') ?><span class="fa arrow"></span></a>
+  
+                    <ul class="nav nav-second-level">
+                        
+                            <li><a href="<?php echo $admin_url;?>leaves" ><?php echo lang('common_leave') ?></a></li>
+                        	<li><a href="<?php echo $admin_url;?>leaves/form" ><?php echo lang('common_apply_leave') ?></a></li>
+                    </ul>
+                </li>
+                <!--li>
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang( 'common_language') ?><span class="fa arrow"></span></a>               
+                    <ul class="nav nav-second-level">
+                      <li><a href="<?php echo site_url($this->config->item('admin_folder').'/lang/change_lang/english')?>">English</a></li>
+							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/lang/change_lang/chinese')?>">Chinese</a></li>
+                    </ul>
+                </li-->
+         <!--li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang( 'common_actions') ?><span class="fa arrow"></span></a> 
+
+                    <ul class="nav nav-second-level">
+                 <li>  <a href="<?php echo site_url();?>"><?php echo lang('common_front_end') ?></a><li>
+     
+                    </ul>
                     </li-->
-                                        
-                   <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_content') ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        	<!--li><a href="<?php echo $admin_url;?>memberships"><?php echo lang('common_memberships') ?></a></li-->
-                            <li><a href="<?php echo $admin_url;?>pages"><?php echo lang('common_pages') ?></a></li>
-                            <!--li><a href="<?php echo $admin_url;?>themes"><?php echo lang('common_themes_setting') ?></a></li-->
-                            <li><a href="<?php echo $admin_url;?>galleries"><?php echo lang('common_gallery') ?></a></li>
-                        </ul>
-                    </li>
-                                                                             
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_administrative') ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <!--li><a href="<?php echo $admin_url;?>settings"><?php echo lang('common_gocart_configuration') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>shipping"><?php echo lang('common_shipping_modules') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>payment"><?php echo lang('common_payment_modules') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>settings/canned_messages"><?php echo lang('common_canned_messages') ?></a></li>
-                            <li><a href="<?php echo $admin_url;?>locations"><?php echo lang('common_locations') ?></a></li-->
-                            <li><a href="<?php echo $admin_url;?>admin"><?php echo lang('common_administrators') ?></a></li>
+                
+                
+          <!--li>
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang( 'common_content') ?><span class="fa arrow"></span></a> 
+              <ul class="nav nav-second-level">
+                  <li><a href="<?php echo $admin_url;?>pages"><?php echo lang('common_pages') ?></a></li>
+                  <li><a href="<?php echo $admin_url;?>galleries"><?php echo lang('common_gallery') ?></a></li>
+                    </ul>  
+            </li-->
+            <li>
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_administrative') ?><span class="fa arrow"></span></a> 
+              <ul class="nav nav-second-level">
+                          
+  <li><a href="<?php echo $admin_url;?>admin"><?php echo lang('common_administrators') ?></a></li>
                             <li><a href="<?php echo $admin_url;?>team"><?php echo lang('common_teams_setting') ?></a></li>
                             <li><a href="<?php echo $admin_url;?>weekend_schedule"><?php echo lang('common_weekend_schedule_setting') ?></a></li>
-                            <!--li><a href="<?php echo $admin_url;?>messages"><?php echo lang('common_messages') ?></a></li-->   
-                            <!--li><a href="<?php echo $admin_url;?>profile"><?php echo lang('common_profile') ?></a></li-->
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_leave_app') ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        	<li><a href="<?php echo $admin_url;?>leaves" ><?php echo lang('common_leave') ?></a></li>                        	
-                        </ul>
-                    </li>   
-                    <?php else:?>
                     
-                    <li class="dropdown">
-                    	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_leave_app') ?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                        	<li><a href="<?php echo $admin_url;?>leaves" ><?php echo lang('common_leave') ?></a></li>
-                        	<li><a href="<?php echo $admin_url;?>leaves/form" ><?php echo lang('common_apply_leave') ?></a></li>
-                        </ul>
-                    </li>    
-                    
-                    <?php endif; ?>
-                </ul>
-                <ul class="nav pull-right">                	
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_actions');?> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/dashboard');?>"><?php echo lang('common_dashboard') ?></a></li>
-                            <li><a href="<?php echo site_url();?>"><?php echo lang('common_front_end') ?></a></li>
-                            <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><?php echo lang('common_log_out') ?></a></li>
-                        </ul>                                                
-                    </li>
-                    
-                    <li class="dropdown">	
-						<a class="dropdown-toggle js-activated"  data-toggle="dropdown" href="#"><?php echo lang('common_language') ?><b class="caret"></b></a>				
-						<ul class="dropdown-menu">							
-							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/lang/change_lang/english')?>">English</a></li>
-							<li><a href="<?php echo site_url($this->config->item('admin_folder').'/lang/change_lang/chinese')?>">Chinese</a></li>
-						</ul>					
-					</li>
-                    
-                </ul>
-            </div><!-- /.nav-collapse -->
+            </ul>  
+            </li>
+        
+
+            </ul>
+
         </div>
-    </div><!-- /navbar-inner -->
-</div>
-<?php endif;?>
-<div class="container">
-    <?php
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+          
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Welcome to Tmt Online</span>
+                </li>
+                <li class="dropdown">
+                    
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/a7.jpg');?>">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">46h ago</small>
+                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/a4.jpg');?>">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5h ago</small>
+                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
+                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/profile.jpg');?>">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">23h ago</small>
+                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
+                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="mailbox.html">
+                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="mailbox.html">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="profile.html">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                    <span class="pull-right text-muted small">12 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="grid_options.html">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                    <span class="pull-right text-muted small">4 minutes ago</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>See All Alerts</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    
+						 <li><a href="<?php echo site_url($this->config->item('admin_folder').'/login/logout');?>"><?php echo lang('common_log_out') ?></a></li>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+				<ol class="breadcrumb">
+                      
+                        <li class="active">
+                            <h2><?php echo $page_title ?></h2>
+                        </li>
+                    </ol>
+					
+                
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Home</a>
+                        </li>
+                        <!--li>
+                            <a>Forms</a>
+                        </li-->
+                        <li class="active">
+                            <strong><?php echo $page_title ?></strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            
+            
+   <?php
     //lets have the flashdata overright "$message" if it exists
     if($this->session->flashdata('message'))
     {
@@ -250,25 +273,20 @@ $(document).ready(function(){
     </div>
     
     <?php if (!empty($message)): ?>
-        <div class="alert alert-success">
-            <a class="close" data-dismiss="alert">×</a>
+  
+        <div class="alert alert-success alert-dismissable">
+           <button aria-hidden="true" data-dismiss="alert" class="close" type="button">X</button>
             <?php echo $message; ?>
         </div>
+  
     <?php endif; ?>
-
+    
     <?php if (!empty($error)): ?>
-        <div class="alert alert-error">
-            <a class="close" data-dismiss="alert">×</a>
+    
+        <div class="alert alert-danger alert-dismissable">
+            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">X</button>
             <?php echo $error; ?>
         </div>
-    <?php endif; ?>
-</div>      
-
-<div class="container">
-    <?php if(!empty($page_title)):?>
-    <div class="page-header">
-        <h1><?php echo  $page_title; ?></h1>
-    </div>
-    <?php endif;?>
-    
-    
+	   
+    <?php endif; ?>         
+						

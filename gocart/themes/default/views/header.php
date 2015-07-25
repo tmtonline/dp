@@ -43,6 +43,8 @@
 <![endif]-->
 
 
+
+
 <?php
 //with this I can put header data in the header instead of in the body.
 if(isset($additional_header_info))
@@ -54,7 +56,6 @@ if(isset($additional_header_info))
 </head>
 
 <body>
-
 
 		
 <nav class="navbar navbar-default" role="navigation">
