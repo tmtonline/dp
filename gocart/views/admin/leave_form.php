@@ -1,387 +1,130 @@
-<?php $GLOBALS['option_value_count'] = 0;?>
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>DETAILS</h5>
+                            
+                        </div>
 
-<?php if($status == 'Approved' || $status == 'Rejected' || $status == 'Cancelled'):?>
+						
+                        <div class="ibox-content">
+						
+						
+						
+						
+						<?php echo form_open($this->config->item('admin_folder').'/leaves/form/'.$id, "id='application_form' class='form-horizontal' "); ?>
+                            
+							
+                                 <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-lg-2 control-label"><?php echo lang('name')?> :</label>
 
-<?php echo form_open($this->config->item('admin_folder').'/leaves/admin_form/'.$id ); ?>
-	<div class="row">
-		<div class="span8">
-			<div class="tabbable">
-				<ul class="nav nav-tabs">
-					<li class="active"><a href="#leave_details" data-toggle="tab"><?php echo lang('details');?></a></li>
-				</ul>
-			</div>
-			<div class="tab-content">
-				<div class="tab-pane active" id="leave_details">
-				
-					<div class="row">
-						<div class="span8">
-							<?php echo lang('name')?>: <?php echo $firstname ?> <?php echo $lastname ?>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="span8">
-							<?php echo lang('email')?>: <?php echo $email ?>
-						</div>
-					</div>
-					<div class="row">
-						<div class="span8">
-							<?php echo lang('application_date')?>: <?php echo date("d-m-Y") ?>
-						</div>
-					</div>
-					
-					<div class="row">
-					&nbsp;
-					</div>
-					
-					<div class="row">
-						<div class="span8">
-							<label><?php echo lang('leave_type')?>: <?php echo $leave_type ?> </label>												
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="span8">
-							<label for="no_of_day"><?php echo lang('no_of_day');?>: <?php echo $qty ?> </label>						
-						</div>				
-					</div>
-					
-					<div class="row">
-						<div class="span8">
-							<label for="datefrom"><?php echo lang('datefrom');?>: <?php echo $datefrom ?> </label>						
-						</div>				
-					</div>
-					
-					<div class="row">
-						<div class="span8">
-							<label for="dateto"><?php echo lang('dateto');?>: <?php echo $dateto ?> </label>						
-						</div>				
-					</div>
-					
-					<div class="row">
-						<div class="span8">
-							<label><?php echo lang('day_leave_type')?>: <?php echo $day_type ?></label>												
-						</div>
-					</div>	
-													
-					<fieldset>
-							     					
-						<label for="content"><?php echo lang('reason');?>: <?php echo $reason?></label>					
+                                    <div class="col-lg-10"><p class="form-control-static"> <?php echo $firstname ?> <?php echo $lastname ?></p></div>
+                                </div>
 								
-					</fieldset>							
-		
-					<div class="row">
-						<div class="span8">
-							<label><?php echo lang('current_status')?>: <b><?php echo $status?></b></label>												
-						</div>
-					</div>					
-	
-					<div class="row">
-						<div class="span8">
+								
+								
+                                <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-lg-2 control-label"><?php echo lang('email')?> :</label>
+
+                                    <div class="col-lg-10"><p class="form-control-static"> <?php echo $email ?></p></div>
+                                </div>
+								
+								
+								
+								   <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-lg-2 control-label"><?php echo lang('application_date')?> :</label>
+
+                                    <div class="col-lg-10"><p class="form-control-static"> <?php echo date("d-m-Y") ?></p></div>
+                                </div>
+					
+                              
+							 <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label"><?php echo lang('leave_type')?> :<br/></label>
+
+                                    <div class="col-sm-10">
+                                        <div class="radio i-checks"><label> <input type="radio" value="Annual Leave" name="leave_type"> <i></i> <?php echo lang('annual_leave')?> </label></div>
+                                        <div class="radio i-checks"><label> <input type="radio" checked="" value="Sick Leave" name="leave_type"> <i></i>  <?php echo lang('sick_leave')?></label></div>
+                                        <div class="radio i-checks"><label> <input type="radio" checked="" value="Emergency Leave" name="leave_type"> <i></i> <?php echo lang('emergency_leave')?></label></div>
+                                    </div>
+                                </div>
+							 
+							
+							  <div class="hr-line-dashed"></div>
+							   <div class="form-group" id="select_date">
+							   
+                                <!--div class="form-group"><label class="col-lg-2 control-label"><?php echo lang('datefrom');?> :</label>
+
+                                 
+									<div class="input-daterange input-group" id="datepicker">
+                                    <input type="text" class="input-sm form-control" name="start" value="05/14/2014"/>
+                                    <span class="input-group-addon">to</span>
+                                    <input type="text" class="input-sm form-control" name="end" value="05/22/2014" />
+                                </div>
+                                </div-->
+								
+								 <div class="form-group"><label class="col-sm-2 control-label" for="start_date"><?php echo lang('datefrom');?> :</label>
+									<?php
+									$data	= array('name'=>'datefrom', 'id'=>'datepicker1', 'value'=>set_value('datefrom'), 'class'=>'form-control');
+									echo '<div class="col-sm-10">'.form_input($data).'</div>'; ?>
+								 </div>
+								 
+								 <div class="form-group"><label class="col-sm-2 control-label" for="start_date"><?php echo lang('dateto');?></label>
+									<?php
+									$data	= array('name'=>'dateto', 'id'=>'datepicker2', 'value'=>set_value('dateto'), 'class'=>'form-control');
+									echo '<div class="col-sm-10">'.form_input($data).'</div>'; ?>
+								 </div>
+								
+							 </div>
+							 
+
+                        
+                        
+                            <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label"><?php echo lang('day_leave_type')?> :</label>
+
+                                    <div class="col-sm-10"><select class="form-control m-b" name="day_type">
+                                        <option><?php echo lang('full_day')?></option>
+                                        <option><?php echo lang('first_half')?></option>
+                                        <option><?php echo lang('second_half')?></option>
+                                        
+                                    </select>
+
+                                    </div>
+                                </div>  
+                          
+						  
+                          
+                        
+						
+                                
+								<div class="form-group"><label class="col-sm-2 control-label" for="desc"><?php echo lang('desc');?></label>
 														
-							<label><?php echo lang('update_status')?>:</label>
-																
-							<?php		
-								if($this->auth->check_access('Admin')) :
+									<textarea class="input-block-level" id="summernote" name="desc" rows="5">
+		                        		<?php echo set_value('desc', $desc) ?>
+		                        	</textarea>
+									
+								 </div>	
+										 
 								
-									if($status == 'Approved'):
-										$options['Rejected'] = lang('rejected');
-									elseif($status == 'Rejected'):									
-										$options['Approved'] = lang('approved');
-									else:
-										$options['Rejected'] = lang('rejected');
-										$options['Approved'] = lang('approved');
-									endif;																					
-																			 	
-									echo form_dropdown('status', $options, set_value('status',$status), 'class="span2"');								
-								else:
-									echo '<b>'.$status.'</b>';
-								endif;
-							?>																					
-								
-																			
-						</div>
-					</div>	
+									
+                                <div class="hr-line-dashed"></div>
+								<div class="form-actions">
+                                <div class="form-group">
+                                    <div class="col-sm-4 col-sm-offset-2">
+                                        <button class="btn btn-white" type="submit">Cancel</button>
+                                       <button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>		
+										
+										
 				
-				</div>
-				
-			</div>
-		</div>
 	</div>
-	<div class="form-actions">
-		<button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>				
-	</div>
-</form>
-
-<?php else:?>
-		
-		<?php  if($this->auth->check_access('Admin')) : ?>
-		
-			<?php echo form_open($this->config->item('admin_folder').'/leaves/admin_form/'.$id ); ?>
-			<div class="row">
-			<div class="span8">
-				<div class="tabbable">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#leave_details" data-toggle="tab"><?php echo lang('details');?></a></li>
-					</ul>
-				</div>
-				<div class="tab-content">
-					<div class="tab-pane active" id="leave_details">
-					
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('name')?>: <?php echo $firstname ?> &nbsp; <?php echo $lastname ?>
-							</div>
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('email')?>: <?php echo $email ?>
-							</div>
-						</div>
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('application_date')?>: <?php echo date("d-m-Y") ?>
-							</div>
-						</div>
-						
-						<div class="row">
-						&nbsp;
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label><?php echo lang('leave_type')?>: <?php echo $leave_type ?> </label>												
-							</div>
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label for="no_of_day"><?php echo lang('no_of_day');?>: <?php echo $qty ?> </label>						
-							</div>				
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label for="datefrom"><?php echo lang('datefrom');?>: <?php echo $datefrom ?> </label>						
-							</div>				
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label for="dateto"><?php echo lang('dateto');?>: <?php echo $dateto ?> </label>						
-							</div>				
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label><?php echo lang('day_leave_type')?>: <?php echo $day_type ?></label>												
-							</div>
-						</div>	
-														
-						<fieldset>
-								     					
-							<label for="content"><?php echo lang('reason');?>: <?php echo $reason?></label>					
-									
-						</fieldset>							
-		
-						<div class="row">
-							<div class="span8">
-								<label><?php echo lang('status')?>: </label>																				
-							<?php			
-									if($status == 'Approved'):
-										$options['Rejected'] = lang('rejected');
-									elseif($status == 'Rejected'):									
-										$options['Approved'] = lang('approved');
-									else:
-										$options['Rejected'] = lang('rejected');
-										$options['Approved'] = lang('approved');
-									endif;														 	
+										
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			
-									echo form_dropdown('status', $options, set_value('status',$status), 'class="span2"');								
-							?>																					
-							</div>
-						</div>	
-					
-					</div>
-					
-				</div>
-			</div>
-			</div>
-			<div class="form-actions">
-				<button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>				
-			</div>
-			</form>
-		
-		<?php else: ?>
-		
-		<?php echo form_open($this->config->item('admin_folder').'/leaves/form/'.$id, "id = 'application_form' "); ?>
-		<div class="row">
-			<div class="span8">
-				<div class="tabbable">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#leave_details" data-toggle="tab"><?php echo lang('details');?></a></li>
-					</ul>
-				</div>
-				<div class="tab-content">
-					<div class="tab-pane active" id="leave_details">
-					
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('name')?>: <?php echo $firstname ?> &nbsp; <?php echo $lastname ?>
-							</div>
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('email')?>: <?php echo $email ?>
-							</div>
-						</div>
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('application_date')?>: <?php echo date("d-m-Y") ?>
-							</div>
-						</div>
-						
-						<?php if($id):?>
-						<div class="row">
-							<div class="span8">
-								<?php echo lang('status')?>: <?php echo $status ?>
-							</div>
-						</div>
-						<?php endif;?>
-						
-						<div class="row">
-						&nbsp;
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label><?php echo lang('leave_type')?>:</label>
-									<input type="radio" name="leave_type" value="Annual Leave" checked> <?php echo lang('annual_leave')?>
-									<input type="radio" name="leave_type" value="Sick Leave" > <?php echo lang('sick_leave')?>
-									<input type="radio" name="leave_type" value="Emergency Leave" > <?php echo lang('emergency_leave')?>											
-									
-								
-							</div>
-						</div>
-						
-						<!--div class="row">
-							<div class="span8">
-								<label for="no_of_day"><?php echo lang('no_of_day');?> </label>
-								<?php
-								$data	= array('name'=>'qty', 'value'=>set_value('qty', $qty), 'class'=>'span2');
-								echo form_input($data);
-								?>
-							</div>				
-						</div-->
-						
-						<div class="row">
-							<div class="span8">
-								<label for="datefrom"><?php echo lang('datefrom');?> </label>
-								<?php
-								$data	= array('name'=>'datefrom', 'value'=>set_value('datefrom', $datefrom), 'class'=>'span2', 'id'=>'select_datefrom');
-								echo form_input($data);
-								?>
-								<input id="date_alt" type="hidden" name="start_date" />
-							</div>				
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label for="dateto"><?php echo lang('dateto');?> </label>
-								<?php
-								$data	= array('name'=>'dateto', 'value'=>set_value('dateto', $dateto), 'class'=>'span2', 'id'=>'select_dateto');
-								echo form_input($data);
-								?>
-								<input id="date_to_alt" type="hidden" name="end_date" />
-							</div>				
-						</div>
-						
-						<div class="row">
-							<div class="span8">
-								<label><?php echo lang('day_leave_type')?>:</label>						
-								<?php
-							 	$options = array(	 'Full Day Leave'	=> lang('full_day')
-													,'First Half Leave'	=> lang('first_half')
-													,'Second Half Leave'	=> lang('second_half')
-													);
-								echo form_dropdown('day_type', $options, set_value('day_type',$day_type), 'class="span3"');
-								?>
-							</div>
-						</div>	
-						
-						
-						
-						<fieldset>
-								     					
-							<label for="content"><?php echo lang('reason');?></label>
-							<?php
-							$data	= array('name'=>'reason', 'id'=>'reason', 'class'=>'redactor', 'value'=>set_value('reason', html_entity_decode($reason)) , 'onchange' => 'enableBeforeUnload();', 'onkeyup' => 'enableBeforeUnload();');
-
-							echo form_textarea($data);
-							?>
-									
-						</fieldset>							
-		
-					
-					</div>
-		
-					
-					
-					
-				</div>
-			</div>
 			
-		</div>
-				
-		<div class="form-actions">
-			<button type="submit" class="btn btn-primary"><?php echo lang('save');?></button>
-			<?php if($id):?>
-				<a id="cancel" class="btn btn-primary"><?php echo lang('cancel');?></a>
-			<?php endif;?>
-		</div>
-		</form>
-		
-		<?php endif; ?>
-		
-
-<?php endif;?>
-
-<script>
-
-var site_url = "<?php echo site_url() ?>";
-var base_url = "<?php echo $this->config->item('admin_folder')?>";
-var recordID = "<?php echo $id ?>";
-
-$('#select_datefrom').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
-
-$('#select_dateto').datepicker({dateFormat:'dd-mm-yy', altField: '#date_to_alt', altFormat: 'yy-mm-dd'});
-
-$("#cancel").click(function(){ 
-		var r = confirm("Confirm to Cancel your leave application?");
-		if (r == true) {			
-			document.getElementById('application_form').action = site_url + base_url + "/" + "leaves/cancel_form/" + recordID;
-			$('#application_form').submit();			
-		}
-});
-
-function enableBeforeUnload() {
-    window.onbeforeunload = function (e) {
-        return "Discard changes?";
-    };
-}
-function disableBeforeUnload() {
-    window.onbeforeunload = null;
-}
-
-
-$('#reason').data('serialize',$('#reason').serialize());
-  // On load save form current state
-
-$(window).bind('beforeunload', function(e){
-    if($('#reason').serialize()!=$('#reason').data('serialize'))return "You haven't submit your reason yet. Do you want to leave without submit?";
-    else e=null;
-    // i.e; if form state change show box not.
-});
-</script>
+			

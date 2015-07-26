@@ -13,7 +13,7 @@ class Galleries extends Admin_Controller
 		
 	function index()
 	{
-		$data['gallery_title']	= lang('gallery');
+		$data['page_title']	= lang('gallery');
 		$data['galleries']		= $this->gallery_model->get_list();								
 		
 		$this->view($this->config->item('admin_folder').'/galleries', $data);
@@ -46,7 +46,7 @@ class Galleries extends Admin_Controller
 		$data['image']		= '';
 		$data['status']		= '';
 		
-		$data['gallery_title']	= lang('gallery_form');
+		$data['page_title']	= lang('gallery_form');
 		$data['galleries']		= $this->gallery_model->get_list();
 		
 		if($id)
