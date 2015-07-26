@@ -25,7 +25,8 @@ class Leaves extends Admin_Controller {
 		// Get the value in the field
 	    $datefrom = $_POST[$datefrom];	    	      
 
-	    if ($datefrom > $dateto)
+	    
+	    if (strtotime($datefrom) > strtotime($dateto))
 	    {
 	    	$this->form_validation->set_message('date_compare', label('datefrom_bigger_than_dateto'));
 	    	return FALSE;
@@ -264,6 +265,22 @@ class Leaves extends Admin_Controller {
 				//insert into trace for future use
 				$trace_id	= $this->Leave_model->save_trace($trace);
 			}
+			
+			$message = $this->current_admin['firstname'].' '.$this->current_admin['lastname'].' has applied '.$save['leave_type'].' with '.$save['day_type'].' from '.$save['datefrom'].' until '.$save['dateto'];
+			
+			$this->load->library('email');
+			$config['mailtype'] = 'html';
+			$this->email->initialize($config);
+			$this->email->from($this->current_admin['email'], $this->current_admin['firstname'].' '.$this->current_admin['lastname']);
+			$this->email->to('raymond@tmt.my');
+			$this->email->cc('ongching@tmt.my');
+			//$this->email->bcc($this->config->item('email'));
+			$this->email->subject($this->current_admin['firstname'].' '.$this->current_admin['lastname'].' Leave Application');
+			$this->email->message(html_entity_decode($message));
+			$this->email->send();
+			
+			
+			
 
 			$this->session->set_flashdata('message', lang('message_saved_leave'));
 
