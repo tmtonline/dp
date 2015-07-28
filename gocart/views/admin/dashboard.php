@@ -1,9 +1,11 @@
+
 <div class="wrapper wrapper-content">
     <div class="row animated fadeInDown">
        
         <div class="col-lg-12">
         
         <div id='calendar'></div>
+		
             <!--div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>Striped Table </h5>

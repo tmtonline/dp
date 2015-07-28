@@ -1,5 +1,4 @@
 
-<?php echo $id?>
 <?php echo form_open($this->config->item('admin_folder').'/admin/form/'.$id, 'class="form-horizontal"'); ?>
 
 
@@ -79,8 +78,8 @@
 		 <div class="form-group"><label class="col-lg-2 control-label"><?php echo lang('password');?> :</label>
 		
 		<?php
-		$data	= array('name'=>'password');
-		echo form_password($data);
+		$data	= array('name'=>'password', 'class'=>'form-control');
+		echo'<div class="col-sm-10">'. form_password($data).'</div>';
 		?>
 		</div>
 		
@@ -90,8 +89,8 @@
 		 <div class="form-group"><label class="col-lg-2 control-label"><?php echo lang('confirm_password');?> :</label>
 		
 		<?php
-		$data	= array('name'=>'confirm');
-		echo form_password($data);
+		$data	= array('name'=>'confirm', 'class'=>'form-control');
+		echo '<div class="col-sm-10">'.form_password($data).'</div>';
 		?>
 		</div>
 		

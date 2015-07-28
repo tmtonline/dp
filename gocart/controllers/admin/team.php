@@ -1,6 +1,8 @@
 <?php
 class Team extends Admin_Controller
+
 {
+	protected $activemenu 	= 'team';
 	
 	function __construct()
 	{
@@ -14,6 +16,7 @@ class Team extends Admin_Controller
 
 	function index()
 	{
+		
 		$data['page_title']	= lang('teams');
 		$data['teams']		= $this->team_model->teams();
 	
@@ -26,6 +29,7 @@ class Team extends Admin_Controller
 	********************************************************************/
 	function delete($id)
 	{
+		
 	
 		$team	= $this->team_model->teams($id);
 	
@@ -44,6 +48,7 @@ class Team extends Admin_Controller
 		
 	function form($id = false)
 	{	
+		$data['activemenu'] 		= $this->activemenu;
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');

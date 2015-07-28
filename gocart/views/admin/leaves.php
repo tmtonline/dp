@@ -71,7 +71,7 @@ function areyousure()
 		<div class="span7">
 			<b><?php echo lang('annual_leave_balance')?>:</b> <?php echo isset($annual_left->total) && !empty($annual_left->total) ? $annual_left->total : 0?></br>
 			<b><?php echo lang('sick_leave_balance')?>:</b> <?php echo isset($sick_left->total) && !empty($sick_left->total) ? $sick_left->total : 0 ?>
-			<?php echo form_open($this->config->item('admin_folder').'/leaves/bulk_save', array('id'=>'bulk_form'));?>
+			
 			
 			</form>
 		</div>
@@ -99,8 +99,9 @@ function areyousure()
 				</form>
 			</div>
 			<?php endif; ?>
-	
+	<?php echo form_open($this->config->item('admin_folder').'/leaves/bulk_save', array('id'=>'bulk_form'));?>
                                 <table class="table table-hover">
+								
 								
 								<tr>
 				<th><?php echo sort_url('firstname', 'firstname', $order_by, $sort_order, $code, $this->config->item('admin_folder'));?></th>

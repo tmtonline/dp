@@ -1,6 +1,8 @@
 <?php
 
 class Leaves extends Admin_Controller {	
+
+protected $activemenu 	= 'leaves';
 	
 	private $use_inventory = false;
 	var $current_admin	= false;
@@ -38,9 +40,10 @@ class Leaves extends Admin_Controller {
 	}		
 	
 	function index($order_by="leave_record.id", $sort_order="DESC", $code=0, $page=0, $rows=15)
-	{				
+	{	
+
 		$access = $this->auth->check_access('Admin');						
-		
+		$data['activemenu'] 		= $this->activemenu;	
 		$data['page_title']	= lang('leave_listing');
 		
 		$data['code']		= $code;
@@ -122,6 +125,7 @@ class Leaves extends Admin_Controller {
 	
 	function form($id = false, $duplicate = false)
 	{
+		$data['activemenu'] 		= $this->activemenu;
 		// MC?		
 		$this->leave_id	= $id;
 		$this->load->library('form_validation');

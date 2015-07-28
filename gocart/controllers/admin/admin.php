@@ -1,6 +1,7 @@
 <?php
 class Admin extends Admin_Controller
 {
+	protected $activemenu 	= 'admin';
 	//these are used when editing, adding or deleting an admin
 	var $admin_id		= false;
 	var $current_admin	= false;
@@ -17,6 +18,7 @@ class Admin extends Admin_Controller
 
 	function index()
 	{
+		$data['activemenu'] 		= $this->activemenu;
 		$data['page_title']	= lang('admins');
 		$data['admins']		= $this->auth->get_admin_list();
 

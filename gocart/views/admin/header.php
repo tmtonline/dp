@@ -21,9 +21,14 @@
 
 
 </head>
-<?php $admin_url = site_url($this->config->item('admin_folder')).'/';?>
-<body>
 
+
+<body>
+<?php if($this->auth->is_logged_in(false, false)):?>
+ 
+            <?php $admin_url = site_url($this->config->item('admin_folder')).'/';?>
+            
+            <a class="brand" href="<?php echo $admin_url;?>"></a>
     <div id="wrapper">
 
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -48,22 +53,37 @@
                         TMT
                     </div>
                 </li>
+       
                 
-                
-                
-                <li>
-                    <a href="<?php echo $admin_url;?>"><i class="fa fa-diamond"></i> <span class="nav-label"><?php echo lang('common_home');?></span></a>
+             
+				<li <?php echo (isset($activemenu) && !empty($activemenu) && $activemenu == 'dashboard') ? 'class="active"' : ''; ?>>
+                    <a href="<?php echo $admin_url;?>"><i class="fa fa-home"></i> <span class="nav-label"><?php echo lang('common_home');?></span></a>
+					
                 </li>   
-                <li>
                 
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_leave_app') ?><span class="fa arrow"></span></a>
-  
+			   <?php
+                    // Restrict access to Admins only
+                    if($this->auth->check_access('Admin')) : ?>
+               <li <?php echo (isset($activemenu) && !empty($activemenu) && $activemenu == 'leaves') ? 'class="active"' : ''; ?>>
+			    <a href="#"><i class="fa fa-mars-stroke"></i> <span class="nav-label"><?php echo lang('common_leave_app');?></span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        
-                            <li><a href="<?php echo $admin_url;?>leaves" ><?php echo lang('common_leave') ?></a></li>
-                        	<li><a href="<?php echo $admin_url;?>leaves/form" ><?php echo lang('common_apply_leave') ?></a></li>
-                    </ul>
+                       
+                            <li><a href="<?php echo $admin_url;?>leaves" ><span class="nav-label"><?php echo lang('common_leave') ?></span></a></li>
+                       	 
+				   </ul>
                 </li>
+				<?php else:?>
+				  
+               <li <?php echo (isset($activemenu) && !empty($activemenu) && $activemenu == 'leaves') ? 'class="active"' : ''; ?>>
+			    <a href="#"><i class="fa fa-mars-stroke"></i> <span class="nav-label"><?php echo lang('common_leave_app');?></span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                       
+                            <li><a href="<?php echo $admin_url;?>leaves" ><span class="nav-label"><?php echo lang('common_leave') ?></span></a></li>
+                       	    <li><a href="<?php echo $admin_url;?>leaves/form" ><span class="nav-label"><?php echo lang('common_apply_leave') ?></span></a></li>
+				   </ul>
+                </li>
+				<?php endif; ?>
+				
                 <!--li>
                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang( 'common_language') ?><span class="fa arrow"></span></a>               
                     <ul class="nav nav-second-level">
@@ -88,23 +108,30 @@
                   <li><a href="<?php echo $admin_url;?>galleries"><?php echo lang('common_gallery') ?></a></li>
                     </ul>  
             </li-->
-            <li>
-             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo lang('common_administrative') ?><span class="fa arrow"></span></a> 
+          <?php
+                    // Restrict access to Admins only
+                    if($this->auth->check_access('Admin')) : ?>
+			 <li <?php echo (isset($activemenu) && !empty($activemenu) && $activemenu == 'admin') ? 'class="active"' : ''; ?>>
+			
+			     <a href="#"><i class="fa fa-user"></i> <span class="nav-label"><?php echo lang('common_administrative');?></span> <span class="fa arrow"></span></a>
+           
               <ul class="nav nav-second-level">
                           
-  <li><a href="<?php echo $admin_url;?>admin"><?php echo lang('common_administrators') ?></a></li>
+                            <li><a href="<?php echo $admin_url;?>admin"><?php echo lang('common_administrators') ?></a></li>  
+							
+							
                             <li><a href="<?php echo $admin_url;?>team"><?php echo lang('common_teams_setting') ?></a></li>
+							
                             <li><a href="<?php echo $admin_url;?>weekend_schedule"><?php echo lang('common_weekend_schedule_setting') ?></a></li>
-                    
-            </ul>  
-            </li>
-        
+                 
+            </ul> 
+          </li>
 
             </ul>
-
+ <?php endif; ?>
         </div>
     </nav>
-
+<?php endif;?>
         <div id="page-wrapper" class="gray-bg">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -116,98 +143,6 @@
                 <li>
                     <span class="m-r-sm text-muted welcome-message">Welcome to Tmt Online</span>
                 </li>
-                <li class="dropdown">
-                    
-                    <ul class="dropdown-menu dropdown-messages">
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/a7.jpg');?>">
-                                </a>
-                                <div class="media-body">
-                                    <small class="pull-right">46h ago</small>
-                                    <strong>Mike Loreipsum</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">3 days ago at 7:58 pm - 10.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/a4.jpg');?>">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right text-navy">5h ago</small>
-                                    <strong>Chris Johnatan Overtunk</strong> started following <strong>Monica Smith</strong>. <br>
-                                    <small class="text-muted">Yesterday 1:21 pm - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="dropdown-messages-box">
-                                <a href="profile.html" class="pull-left">
-                                    <img alt="image" class="img-circle" src="<?php echo base_url('assets/img/profile.jpg');?>">
-                                </a>
-                                <div class="media-body ">
-                                    <small class="pull-right">23h ago</small>
-                                    <strong>Monica Smith</strong> love <strong>Kim Smith</strong>. <br>
-                                    <small class="text-muted">2 days ago at 2:30 am - 11.06.2014</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="mailbox.html">
-                                    <i class="fa fa-envelope"></i> <strong>Read All Messages</strong>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="mailbox.html">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> You have 16 messages
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="profile.html">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="grid_options.html">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <div class="text-center link-block">
-                                <a href="notifications.html">
-                                    <strong>See All Alerts</strong>
-                                    <i class="fa fa-angle-right"></i>
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-
 
                 <li>
                     
