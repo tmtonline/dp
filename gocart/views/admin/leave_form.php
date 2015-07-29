@@ -350,6 +350,7 @@
 									$data	= array('name'=>'dateto', 'id'=>'datepicker2', 'value'=>set_value('dateto'), 'class'=>'form-control');
 									echo '<div class="col-sm-10">'.form_input($data).'</div>'; ?>
 								
+<<<<<<< HEAD
 								<input id="date_to_alt" type="hidden" name="end_date" />
 							
 									</p>
@@ -372,11 +373,40 @@
 								 <div class="hr-line-dashed"></div>
 								<div class="form-group"><label class="col-sm-2 control-label" for="reason"><?php echo lang('reason');?> :</label>
 								
+=======
+							 </div>
+							 
+
+                        
+                        
+                            <div class="hr-line-dashed"></div>
+                                <div class="form-group"><label class="col-sm-2 control-label"><?php echo lang('day_leave_type')?> :</label>
+
+                                    <div class="col-sm-10"><select class="form-control m-b" name="day_type">
+                                        <option><?php echo lang('full_day')?></option>
+                                        <option><?php echo lang('first_half')?></option>
+                                        <option><?php echo lang('second_half')?></option>
+                                        
+                                    </select>
+
+                                    </div>
+                                </div>  
+                          
+						  
+                          
+                        
+						
+                                
+								<div class="form-group"><label class="col-sm-2 control-label" for="desc"><?php echo lang('desc');?></label>
+														
+									<textarea class="input-block-level" id="summernote" name="desc" rows="5">
+		                        		<?php echo set_value('desc', $desc) ?>
+		                        	</textarea>
+									
+>>>>>>> 3daab6ae43ee7c6a55112bb7947e9026fca9cb5a
 								 </div>	
-								 
-								 <textarea class="input-block-level" id="summernote" name="reason" rows="5">
-										<?php echo set_value('reason', html_entity_decode($reason)) ?>
-									</textarea>
+										 
+								
 									
 									
 								 <div class="hr-line-dashed"></div>	

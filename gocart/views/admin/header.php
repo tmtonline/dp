@@ -18,7 +18,9 @@
 	<link type="text/css" href="<?php echo base_url('assets/css/jquery.timepicker.css');?>" rel="stylesheet" />
 	<link type="text/css" href="<?php echo base_url('assets/css/fullcalendar.print.css');?>" rel="stylesheet" media="print" />
 	<link type="text/css" href="<?php echo base_url('assets/css/fullcalendar.css');?>" rel="stylesheet" />
-
+	<link type="text/css" href="<?php echo base_url('assets/css/plugins/summernote/summernote.css');?>" rel="stylesheet" />
+	<link type="text/css" href="<?php echo base_url('assets/css/plugins/summernote/summernote-bs3.css');?>" rel="stylesheet" />
+	
 
 </head>
 
