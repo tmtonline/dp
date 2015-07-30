@@ -107,21 +107,7 @@ $("#cancel").click(function(){
 			$('#application_form').submit();			
 		}
 });
-function enableBeforeUnload() {
-    window.onbeforeunload = function (e) {
-        return "Discard changes?";
-    };
-}
-function disableBeforeUnload() {
-    window.onbeforeunload = null;
-}
-$('#reason').data('serialize',$('#reason').serialize());
-  // On load save form current state
-$(window).bind('beforeunload', function(e){
-    if($('#reason').serialize()!=$('#reason').data('serialize'))return "You haven't submit your reason yet. Do you want to leave without submit?";
-    else e=null;
-    // i.e; if form state change show box not.
-});
+
 
 $('#datepicker1').datepicker({
 	format: 'dd-mm-yyyy',

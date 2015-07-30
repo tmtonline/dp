@@ -350,7 +350,7 @@
 									$data	= array('name'=>'dateto', 'id'=>'datepicker2', 'value'=>set_value('dateto'), 'class'=>'form-control');
 									echo '<div class="col-sm-10">'.form_input($data).'</div>'; ?>
 								
-<<<<<<< HEAD
+
 								<input id="date_to_alt" type="hidden" name="end_date" />
 							
 									</p>
@@ -372,9 +372,7 @@
 								
 								 <div class="hr-line-dashed"></div>
 								<div class="form-group"><label class="col-sm-2 control-label" for="reason"><?php echo lang('reason');?> :</label>
-								
-=======
-							 </div>
+					 </div>
 							 
 
                         
@@ -397,20 +395,20 @@
                         
 						
                                 
-								<div class="form-group"><label class="col-sm-2 control-label" for="desc"><?php echo lang('desc');?></label>
+								<div class="form-group"><label class="col-sm-2 control-label" for="reason"><?php echo lang('reason');?></label>
 														
-									<textarea class="input-block-level" id="summernote" name="desc" rows="5">
-		                        		<?php echo set_value('desc', $desc) ?>
+									<textarea class="input-block-level" id="summernote" name="reason" rows="5">
+		                        		<?php echo set_value('reason', $reason) ?>
 		                        	</textarea>
 									
->>>>>>> 3daab6ae43ee7c6a55112bb7947e9026fca9cb5a
+
 								 </div>	
 										 
 								
 									
 									
 								 <div class="hr-line-dashed"></div>	
-                                <div class="hr-line-dashed"></div>
+                             
 								<div class="form-actions">
                                 <div class="form-group">
                                     <div class="col-sm-4 col-sm-offset-2">
