@@ -67,6 +67,7 @@
                     // Restrict access to Admins only
                     if($this->auth->check_access('Admin')) : ?>
                <li <?php echo (isset($activemenu) && !empty($activemenu) && $activemenu == 'leaves') ? 'class="active"' : ''; ?>>
+			   
 			    <a href="#"><i class="fa fa-mars-stroke"></i> <span class="nav-label"><?php echo lang('common_leave_app');?></span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                        
@@ -80,8 +81,8 @@
 			    <a href="#"><i class="fa fa-mars-stroke"></i> <span class="nav-label"><?php echo lang('common_leave_app');?></span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                        
-                            <li><a href="<?php echo $admin_url;?>leaves" ><span class="nav-label"><?php echo lang('common_leave') ?></span></a></li>
-                       	    <li><a href="<?php echo $admin_url;?>leaves/form" ><span class="nav-label"><?php echo lang('common_apply_leave') ?></span></a></li>
+                            <li><a href="<?php echo $admin_url;?>leaves" ><?php echo lang('common_leave') ?></a></li>
+                       	    <li><a href="<?php echo $admin_url;?>leaves/form" ><?php echo lang('common_apply_leave') ?></a></li>
 				   </ul>
                 </li>
 				<?php endif; ?>
@@ -177,9 +178,7 @@
                         </li>
                     </ol>
                 </div>
-                <div class="col-lg-2">
-
-                </div>
+                
             </div>
             
             
