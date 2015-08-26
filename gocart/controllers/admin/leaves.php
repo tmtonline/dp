@@ -511,4 +511,61 @@ protected $activemenu 	= 'leaves';
 		}
 	}
 	
+	function viewleavespdf($start = '', $end = '', $applicants = '', $leave_type = '', $day_type = '', $status = '')
+	{
+		$data['activemenu'] = $this->activemenu;
+		$data['page_title']	= lang('leave_application');
+		$this->load->helper('date');
+		$this->load->helper('pdf');
+		/* $start		= $this->input->post('start');
+		$end		= $this->input->post('end');
+		$leave_type	= $this->input->post('leave_type');
+		$day_type	= $this->input->post('day_type');
+		$status		= $this->input->post('status');		
+		$applicants = $this->input->post('applicants'); */
+		
+		$leaves		= $this->Leave_model->get_leave_listing($start, $end, $applicants, $leave_type, $day_type, $status);
+		$pdf_leaves = generate_pdf_leaves($leaves, $start, $end);
+	}
+	
+	function bulk_leave()
+	{	
+		$data['activemenu'] = $this->activemenu;
+		$data['page_title']	= lang('leave_application');
+		$data['staffs']		= $this->Admin_model->get_staffs();
+		
+		$this->view($this->config->item('admin_folder').'/leaves', $data);
+	}
+	
+		
+		
+	function leave_listing()
+	{
+		$data['activemenu'] = $this->activemenu;
+		$data['page_title']	= lang('daily_reports');
+		$this->load->helper('date');
+		
+		$start		= $this->input->post('start');
+		$end		= $this->input->post('end');
+		
+		//$start		= '2015-07-29';
+		//$end		= '2015-07-29';
+		
+		$leave_type	= $this->input->post('leave_type');
+		$day_type	= $this->input->post('day_type');
+		$status		= $this->input->post('status');		
+		$applicants = $this->input->post('applicants');
+		
+		$data['start']				= $start;
+		$data['end']				= $end;
+		$data['applicants']			= $applicants;
+		$data['leave_type']			= $leave_type;
+		$data['day_type']			= $day_type;
+		$data['status']				= $status;
+		
+		$data['leaves']	= $this->Leave_model->get_leave_listing($start, $end, $applicants, $leave_type, $day_type, $status);
+	
+		$this->load->view($this->config->item('admin_folder').'/leaves/leave_listing', $data);
+	}
+	
 }

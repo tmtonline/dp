@@ -70,7 +70,7 @@
 			    <a href="#"><i class="fa fa-mars-stroke"></i> <span class="nav-label"><?php echo lang('common_leave_app');?></span> <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                        
-                            <li><a href="<?php echo $admin_url;?>leaves" ><span class="nav-label"><?php echo lang('common_leave') ?></span></a></li>
+                            <li><a href="<?php echo $admin_url;?>leaves/bulk_leave" ><span class="nav-label"><?php echo lang('common_leave') ?></span></a></li>
                        	 
 				   </ul>
                 </li>

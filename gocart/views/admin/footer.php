@@ -85,8 +85,6 @@ $(document).ready(function(){
 	$('#summernote').summernote({
         height: 500
 	});
-
-    
     
 });
 </script>
@@ -97,7 +95,7 @@ $(document).ready(function(){
 <script>
 var site_url = "<?php echo site_url() ?>";
 var base_url = "<?php echo $this->config->item('admin_folder')?>";
-var recordID = "<?php echo $id ?>";
+var recordID = "<?php echo (!empty($id) && isset($id)) ? $id : '' ?>";
 //$('#select_datefrom').datepicker({dateFormat:'dd-mm-yy', altField: '#date_alt', altFormat: 'yy-mm-dd'});
 //$('#select_dateto').datepicker({dateFormat:'dd-mm-yy', altField: '#date_to_alt', altFormat: 'yy-mm-dd'});
 $("#cancel").click(function(){ 
@@ -107,21 +105,7 @@ $("#cancel").click(function(){
 			$('#application_form').submit();			
 		}
 });
-function enableBeforeUnload() {
-    window.onbeforeunload = function (e) {
-        return "Discard changes?";
-    };
-}
-function disableBeforeUnload() {
-    window.onbeforeunload = null;
-}
-$('#reason').data('serialize',$('#reason').serialize());
-  // On load save form current state
-$(window).bind('beforeunload', function(e){
-    if($('#reason').serialize()!=$('#reason').data('serialize'))return "You haven't submit your reason yet. Do you want to leave without submit?";
-    else e=null;
-    // i.e; if form state change show box not.
-});
+
 
 $('#datepicker1').datepicker({
 	format: 'dd-mm-yyyy',

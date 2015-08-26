@@ -370,7 +370,44 @@ Class Leave_model extends CI_Model
 	}
 	
 	
+	function get_leave_listing($start, $end, $applicants, $leave_type, $day_type, $status)
+	{
+		$this->db->select('CONCAT(admin.lastname, " ", admin.firstname) as title, leave_record.*', false);		
+		$this->db->join('admin', 'admin.id=leave_record.applicants', 'left');		
+		
+		if(!empty($start))
+		{
+			$this->db->where('leave_record.datefrom >=', format_ymd_malaysia($start).' 00:00:00');
+		}
 	
+		if(!empty($end))
+		{
+			$this->db->where('leave_record.dateto <',  format_ymd_malaysia($end).' 23:59:59');
+		}
+		
+		if(!empty($applicants))
+		{
+			$this->db->where('leave_record.applicants ',  $applicants);
+		}
+		
+		if(!empty($leave_type))
+		{
+			$this->db->where('leave_record.leave_type ',  $leave_type);
+		}
+		
+		if(!empty($day_type))
+		{
+			$this->db->where('leave_record.day_type ',  $day_type);
+		}
+		
+		if(!empty($status))
+		{
+			$this->db->where('leave_record.status ',  $status);
+		}		
+					
+		// just fetch a list of order id's
+		return $this->db->get('leave_record')->result();	
+	}
 	
 	
 }

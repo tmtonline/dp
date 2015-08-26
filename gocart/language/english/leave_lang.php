@@ -30,6 +30,10 @@ $lang['leave_adjustment_form']		= 'Leave Adjustment Form';
 $lang['annual_leave_balance']		= 'Annual Leave Balance';
 $lang['sick_leave_balance']			= 'Sick Leave Balance';
 $lang['no_data']					= 'No Data';
+$lang['from']						= 'Date From';
+$lang['to']							= 'Date To';
+$lang['applicants']					= 'Applicants';
+
 
 
 
